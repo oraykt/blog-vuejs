@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <b-navbar type="dark" variant="info">
-        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">VueBlog</router-link>
+        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">{{this.appName}}</router-link>
         <b-navbar-nav>
           <router-link :to="{name: 'Home'}" active-class="active" exact tag="li">
             <a class="nav-link">Home</a>
@@ -18,8 +18,14 @@
 </template>
 
 <script>
+
+import {mapState} from 'vuex'
+
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    ...mapState(['appName'])
+  }
 }
 </script>
 
