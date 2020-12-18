@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <b-navbar type="dark" variant="info">
-        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">{{this.appName}}</router-link>
+        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">{{this.seperatedAppName}}</router-link>
         <b-navbar-nav>
           <router-link :to="{name: 'Home'}" active-class="active" exact tag="li">
             <a class="nav-link">Home</a>
@@ -10,6 +10,7 @@
           <router-link :to="{name: 'About'}" active-class="active" tag="li">
             <a class="nav-link">About</a>
           </router-link>
+          <b-button variant="danger" @click="onClick">Change appName</b-button>
         </b-navbar-nav>
       </b-navbar>
     </div>
@@ -19,12 +20,23 @@
 
 <script>
 
-import {mapState} from 'vuex'
+import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
   name: 'App',
+  methods: {
+    ...mapMutations(['changeAppName']),
+    ...mapActions(['changeAppNameAsync']),
+    onClick () {
+      // let randomNames = ['AlphaBlog', 'BetaBlog', 'BlueSelection', 'AdventureTime', 'VueBlog']
+      // let choosenName = randomNames[Math.floor(Math.random() * randomNames.length)]
+      // this.changeAppName({appName: choosenName})
+      this.changeAppNameAsync()
+    }
+  },
   computed: {
-    ...mapState(['appName'])
+    ...mapState(['appName']),
+    ...mapGetters(['seperatedAppName'])
   }
 }
 </script>
