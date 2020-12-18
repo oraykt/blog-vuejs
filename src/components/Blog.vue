@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-view></router-view>
+    <transition name="slide">
+        <router-view></router-view>
+    </transition>
     <b-container class="blog-list">
       <b-row>
         <b-col cols="12">
@@ -39,6 +41,38 @@ export default {
 </script>
 
 <style>
+
+.blog-detail{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: white;
+  padding: 120px 0;
+  z-index: 1;
+}
+
+.slide-enter,
+.slide-leave-to{
+  opacity: 0;
+  transform: translate3d(0, -100%, 0);
+}
+
+.slide-enter-to,
+.slide-leave{
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-enter-active{
+  transition: all 0.3s ease-out;
+}
+
+.slide-leave-active{
+  transition: all 0.2s ease-in;
+}
+
 .blog-cell {
   position: relative;
   overflow: hidden;
