@@ -42,17 +42,6 @@ export default {
 
 <style>
 
-.blog-detail{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: white;
-  padding: 120px 0;
-  z-index: 1;
-}
-
 .slide-enter,
 .slide-leave-to{
   opacity: 0;
