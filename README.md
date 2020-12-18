@@ -1,10 +1,15 @@
 # blog
 
+Hello Dear visitor, If you are reading this line and taking a look at the repository <br/>
+you can also visit the live version. <br />
+Do not forget that This is a self-improvement repository and aimed to learn VueJs tricks. <br />
+
 > A Vue.js project
+> [https://kt-blog-vue.herokuapp.com/](https://kt-blog-vue.herokuapp.com/)
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
