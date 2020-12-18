@@ -30,9 +30,14 @@
 import {entries} from '../../static/api/entries.json'
 
 export default {
+  props: {
+    id: {
+      type: Number,
+      required: true
+    }
+  },
   data () {
     return {
-      id: this.$route.params.id,
       entry: {}
     }
   },
