@@ -2,12 +2,12 @@
   <div id="app">
     <div id="nav">
       <b-navbar type="dark" variant="info">
-        <b-navbar-brand>VueBlog</b-navbar-brand>
+        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">VueBlog</router-link>
         <b-navbar-nav>
-          <router-link to="/" active-class="active" exact tag="li">
+          <router-link :to="{name: 'Home'}" active-class="active" exact tag="li">
             <a class="nav-link">Home</a>
           </router-link>
-          <router-link to="/about" active-class="active" tag="li">
+          <router-link :to="{name: 'About'}" active-class="active" tag="li">
             <a class="nav-link">About</a>
           </router-link>
         </b-navbar-nav>

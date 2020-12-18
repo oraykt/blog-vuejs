@@ -6,7 +6,7 @@
           <h1>Home</h1>
         </b-col>
         <b-col cols="12" sm="6" md="4" v-for="item in entries" :key="item.id">
-          <router-link :to="'/blog/' + item.id" class="blog-cell">
+          <router-link :to="{name:'BlogDetail', params: { id: item.id }}" class="blog-cell">
             <figure>
               <img :src="item.img" :alt="item.imgAlt" class="blog-cell__img" />
               <figcaption class="blog-cell__caption">
