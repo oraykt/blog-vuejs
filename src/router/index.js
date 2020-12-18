@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Blog from '@/components/Blog'
 import BlogDetail from '@/components/BlogDetail'
 import About from '@/components/About'
+import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
 
@@ -24,6 +25,15 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/404',
+      name: 'PageNotFound',
+      component: PageNotFound
+    },
+    {
+      path: '*',
+      redirect: {name: 'PageNotFound'}
     }
   ],
   mode: 'history'
