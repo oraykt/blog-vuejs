@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view></router-view>
     <b-container class="blog-list">
       <b-row>
         <b-col cols="12">

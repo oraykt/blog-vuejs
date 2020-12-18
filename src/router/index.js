@@ -11,17 +11,19 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Blog
+      component: Blog,
+      children: [
+        {
+          path: '/blog/:id',
+          name: 'BlogDetail',
+          component: BlogDetail
+        }
+      ]
     },
     {
       path: '/about',
       name: 'About',
       component: About
-    },
-    {
-      path: '/blog/:id',
-      name: 'BlogDetail',
-      component: BlogDetail
     }
   ],
   mode: 'history'

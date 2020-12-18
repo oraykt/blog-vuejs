@@ -3,7 +3,9 @@
     <b-container>
       <b-row>
         <b-col>
-          <router-link :to="{name:'Home'}" class="blog-detail__back-link">Back</router-link>
+          <router-link :to="{name:'Home'}" class="blog-detail__back-link">
+            <b-button variant="info"> ⇐ Back</b-button>
+          </router-link>
         </b-col>
       </b-row>
       <b-row>
@@ -35,7 +37,18 @@ export default {
     }
   },
   created () {
-    this.entry = entries.find(x => x.id === parseInt(this.id))
+    this.fetchEntry()
+  },
+  watch: {
+    '$route' (to, from) {
+      this.id = to.params.id
+      this.fetchEntry()
+    }
+  },
+  methods: {
+    fetchEntry () {
+      this.entry = entries.find(x => x.id === parseInt(this.id))
+    }
   }
 }
 </script>
