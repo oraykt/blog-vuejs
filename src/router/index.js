@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Blog from '@/components/Blog'
 import BlogDetail from '@/components/BlogDetail'
 import About from '@/components/About'
+import Search from '@/components/Search'
 import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
@@ -26,6 +27,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     },
     {
       path: '/404',

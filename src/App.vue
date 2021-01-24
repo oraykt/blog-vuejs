@@ -12,6 +12,12 @@
           </router-link>
           <b-button variant="danger" @click="onClick">Change appName</b-button>
         </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form @submit.prevent="onSubmit">
+            <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="searchTerm"></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+          </b-nav-form>
+        </b-navbar-nav>
       </b-navbar>
     </div>
     <router-view/>
@@ -24,19 +30,25 @@ import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
   name: 'App',
+  data () {
+    return {
+      searchTerm: ''
+    }
+  },
   methods: {
     ...mapMutations(['changeAppName']),
     ...mapActions(['changeAppNameAsync']),
     onClick () {
-      // let randomNames = ['AlphaBlog', 'BetaBlog', 'BlueSelection', 'AdventureTime', 'VueBlog']
-      // let choosenName = randomNames[Math.floor(Math.random() * randomNames.length)]
-      // this.changeAppName({appName: choosenName})
+      // this.changeAppName({ appName: ' ' })
       this.changeAppNameAsync()
+    },
+    onSubmit () {
+      this.$router.push({name: 'Search', query: {q: this.searchTerm}})
     }
   },
   computed: {
-    ...mapState(['appName']),
-    ...mapGetters(['appName'])
+    ...mapState(['appName']), // this.appName
+    ...mapGetters(['appName']) // this.appName()
   }
 }
 </script>
