@@ -9,6 +9,14 @@ export const store = new Vuex.Store({
   getters: {
     seperatedAppName: (state) => {
       return state.appName.replace(/([a-z](?=[A-Z]))/g, '$1 ')
+    },
+    // capitalAppName: (state, getters) => {
+    //   return getters.seperatedAppName.toUpperCase()
+    // },
+    appName: (state, getters) => (isCapitalLetters = false) => {
+      return isCapitalLetters
+        ? getters.seperatedAppName.toUpperCase()
+        : getters.seperatedAppName
     }
   },
   mutations: {
