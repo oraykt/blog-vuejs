@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <b-navbar type="dark" variant="info">
-        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">{{this.appName(true)}}</router-link>
+        <router-link :to="{name:'Home'}" class="navbar-brand" target="_self">Vue Blog</router-link>
         <b-navbar-nav>
           <router-link :to="{name: 'Home'}" active-class="active" exact tag="li">
             <a class="nav-link">Home</a>
@@ -10,7 +10,6 @@
           <router-link :to="{name: 'About'}" active-class="active" tag="li">
             <a class="nav-link">About</a>
           </router-link>
-          <b-button variant="danger" @click="onClick">Change appName</b-button>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-form @submit.prevent="onSubmit">
@@ -26,8 +25,6 @@
 
 <script>
 
-import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
-
 export default {
   name: 'App',
   data () {
@@ -36,19 +33,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['changeAppName']),
-    ...mapActions(['changeAppNameAsync']),
-    onClick () {
-      // this.changeAppName({ appName: ' ' })
-      this.changeAppNameAsync()
-    },
     onSubmit () {
-      this.$router.push({name: 'Search', query: {q: this.searchTerm}})
+      this.$router.push({ name: 'Search', query: { q: this.searchTerm } })
     }
-  },
-  computed: {
-    ...mapState(['appName']), // this.appName
-    ...mapGetters(['appName']) // this.appName()
   }
 }
 </script>

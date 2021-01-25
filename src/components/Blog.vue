@@ -27,15 +27,17 @@
 </template>
 
 <script>
-import {entries} from '../../static/api/entries.json'
+import {mapGetters, mapActions, mapState} from 'vuex'
 export default {
-  data () {
-    return {
-      entries: []
-    }
+  methods: {
+    ...mapGetters(['getEntries']), // enable this.getEntries()
+    ...mapActions(['fetchEntries'])
+  },
+  computed: {
+    ...mapState(['entries']) // enable this.entries
   },
   created () {
-    this.entries = entries
+    this.fetchEntries()
   }
 }
 </script>

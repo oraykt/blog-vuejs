@@ -1,41 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import db from '../firebase'
 
 Vue.use(Vuex)
+
 export const store = new Vuex.Store({
   state: {
-    appName: 'VueBlog'
+    entries: []
   },
   getters: {
-    seperatedAppName: (state) => {
-      return state.appName.replace(/([a-z](?=[A-Z]))/g, '$1 ')
+    getEntries: (state, getters) => {
+      return state.entries
     },
-    // capitalAppName: (state, getters) => {
-    //   return getters.seperatedAppName.toUpperCase()
-    // },
-    appName: (state, getters) => (isCapitalLetters = false) => {
-      return isCapitalLetters
-        ? getters.seperatedAppName.toUpperCase()
-        : getters.seperatedAppName
+    filteredResults: (state) => (term) => {
+      return state.entries.filter(entry => ~entry.title.toLowerCase().indexOf(term.toLowerCase()))
     }
   },
   mutations: {
-    changeAppName (state, payload) {
-      state.appName = payload.appName
+    setEntries (state, payload) {
+      state.entries = payload.entries
     }
   },
   actions: {
-    changeAppNameAsync (context) {
-      const things = [
-        'AlphaBlog',
-        'BetaBlog',
-        'BlueSelection',
-        'AdventureTime',
-        'VueBlog'
-      ]
-      const choosen = things[Math.floor(Math.random() * things.length)]
-      // changeAppName => mutations.changeAppName(...payload)
-      context.commit('changeAppName', {appName: choosen})
+    fetchEntries (context) {
+      db.ref('entries').on('value', snapshot => {
+        context.commit('setEntries', {entries: snapshot.val()})
+      })
     }
   }
 })

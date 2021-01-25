@@ -4,7 +4,7 @@
       <b-col cols="12">
         <h1>Search</h1>
       </b-col>
-      <b-col cols="12" sm="6" md="4" v-for="item in filteredResults" :key="item.id">
+      <b-col cols="12" sm="6" md="4" v-for="item in filteredResults(searchTerm)" :key="item.id">
         <router-link :to="{ name: 'BlogDetail', params: { id: item.id } }" class="blog-cell">
           <figure>
             <img :src="item.img" :alt="item.imgAlt" class="blog-cell__img">
@@ -22,13 +22,12 @@
 </template>
 
 <script>
-import {entries} from '../../static/api/entries.json'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      searchTerm: this.$route.query.q,
-      entries: []
+      searchTerm: this.$route.query.q
     }
   },
   watch: {
@@ -37,12 +36,13 @@ export default {
     }
   },
   computed: {
-    filteredResults () {
-      return this.entries.filter(entry => ~entry.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()))
-    }
+    ...mapGetters(['filteredResults'])
+  },
+  methods: {
+    ...mapActions(['fetchEntries'])
   },
   created () {
-    this.entries = entries
+    this.fetchEntries()
   }
 }
 </script>
