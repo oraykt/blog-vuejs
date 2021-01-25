@@ -8,8 +8,8 @@
         <b-col cols="12">
           <h1>Home</h1>
         </b-col>
-        <b-col cols="12" sm="6" md="4" v-for="item in entries" :key="item.id">
-          <router-link :to="{name:'BlogDetail', params: { id: item.id }}" class="blog-cell">
+        <b-col cols="12" sm="6" md="4" v-for="(item, index) in entries" :key="item.id">
+          <router-link :to="{name:'BlogDetail', params: { index }}" class="blog-cell">
             <figure>
               <img :src="item.img" :alt="item.imgAlt" class="blog-cell__img" />
               <figcaption class="blog-cell__caption">
